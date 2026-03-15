@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merdeka Wangsa — Business · Legal · Political Consulting</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F5D78E;
+            --gold-dark: #B8860B;
+            --bg-dark: #0a0a0a;
+            --bg-navy: #0a0f1e;
+            --bg-gray: #111827;
+            --bg-black: #050505;
+            --bg-founder: #0d1117;
+            --text-white: #ffffff;
+            --text-light: #E5E7EB;
+            --text-gray: #9CA3AF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #C9A84C, #F5D78E, #B8860B);
+        }
+
+        .gold-text {
+            color: var(--gold);
+        }
+
+        .gold-border {
+            border-color: var(--gold);
+        }
+
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .gold-glow-hover:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            transform: translateY(-8px);
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid #D4AF37;
+            color: #D4AF37;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #C9A84C, #D4AF37);
+            color: #000;
+            font-weight: bold;
+            border-color: #D4AF37;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        .lang-divider {
+            color: #D4AF37;
+            font-size: 16px;
+        }
+
+        /* Navigation */
+        nav {
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .slide-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cards */
+        .service-card {
+            background: #1a2035;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            transform: translateY(-8px);
+        }
+
+        .value-card {
+            background: rgba(26, 32, 53, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+        }
+
+        .value-card:hover::before {
+            left: 100%;
+        }
+
+        /* Founder Section */
+        .founder-photo {
+            position: relative;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .founder-photo img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .founder-photo::before {
+            content: 'AMW';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: rgba(212, 175, 55, 0.05);
+            z-index: -1;
+        }
+
+        .blockquote-gold {
+            border-left: 4px solid var(--gold);
+            padding-left: 20px;
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        /* Buttons */
+        .btn-gold {
+            background: linear-gradient(135deg, #C9A84C, #F5D78E);
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-gold-outline {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            background: transparent;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold-outline:hover {
+            background: var(--gold);
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* Scroll to top */
+        #scrollTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: #000;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        #scrollTop:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            transform: translateY(-5px);
+        }
+
+        #scrollTop.show {
+            display: flex;
+        }
+
+        /* Decorative elements */
+        .gold-divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 20px auto;
+        }
+
+        .section-ornament {
+            width: 4px;
+            height: 60px;
+            background: linear-gradient(180deg, transparent, var(--gold), transparent);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            #hero {
+                min-height: 80vh;
+            }
+
+            .founder-photo::before {
+                font-size: 60px;
+            }
+
+            .lang-toggle {
+                position: absolute;
+                top: 70px;
+                right: 24px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+        }
+
+        /* PDF optimization */
+         {
+            nav {
+                position: relative !important;
+            }
+
+            #scrollTop {
+                display: none !important;
+            }
+        }
+
+        /* Background patterns */
+        .pattern-dots {
+            background-image: radial-gradient(circle, rgba(212, 175, 55, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .pattern-diagonal {
+            background-image: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(212, 175, 55, 0.03) 10px,
+                rgba(212, 175, 55, 0.03) 20px
+            );
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar" class="fixed w-full top-0 left-0 bg-transparent py-4 px-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="https://www.genspark.ai/api/files/s/OOmccRX6" alt="Merdeka Wangsa" class="h-12">
+        </div>
+        <div class="desktop-menu flex space-x-8">
+            <a href="#hero" class="nav-link text-white hover:text-yellow-500" data-id="Beranda" data-en="Home">Beranda</a>
+            <a href="#tentang" class="nav-link text-white hover:text-yellow-500" data-id="Tentang" data-en="About">Tentang</a>
+            <a href="#visi-misi" class="nav-link text-white hover:text-yellow-500" data-id="Visi & Misi" data-en="Vision & Mission">Visi & Misi</a>
+            <a href="#pesan-pendiri" class="nav-link text-white hover:text-yellow-500" data-id="Pesan Pendiri" data-en="Founder's Message">Pesan Pendiri</a>
+            <a href="#layanan" class="nav-link text-white hover:text-yellow-500" data-id="Layanan" data-en="Services">Layanan</a>
+            <a href="#keunggulan" class="nav-link text-white hover:text-yellow-500" data-id="Keunggulan" data-en="Excellence">Keunggulan</a>
+            <a href="#nilai" class="nav-link text-white hover:text-yellow-500" data-id="Nilai" data-en="Values">Nilai</a>
+            <a href="#kontak" class="nav-link text-white hover:text-yellow-500" data-id="Kontak" data-en="Contact">Kontak</a>
+        </div>
+        <div class="lang-toggle">
+            <button id="btn-id" class="lang-btn active" onclick="switchLanguage('id')">🇮🇩 ID</button>
+            <span class="lang-divider">|</span>
+            <button id="btn-en" class="lang-btn" onclick="switchLanguage('en')">🇬🇧 EN</button>
+        </div>
+        <button class="hamburger text-white text-2xl" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu py-6">
+        <div class="flex flex-col space-y-4 px-6">
+            <a href="#hero" class="text-white hover:text-yellow-500" onclick="toggleMenu()" data-id="Beranda" data-en="Home">Beranda</a>
+            <a href="#tentang" class="text-white hover:text-yellow-500" onclick="toggleMenu()" data-id="Tentang" data-en="About">Tentang</a>
+            <a href="#visi-misi" class="text-white hover:text-yellow-500" onclick="toggleMenu()" data-id="Visi & Misi" data-en="Vision & Mission">Visi & Misi</a>
+            <a href="#pesan-pendiri" class="text-white hover:text-yellow-500" onclick="toggleMenu()" data-id="Pesan Pendiri" data-en="Founder's Message">Pesan Pendiri</a>
+            <a href="#layanan" class="text-white hover:text-yellow-500" onclick="toggleMenu()" data-id="Layanan" data-en="Services">Layanan</a>
+            <a href="#keunggulan" class="text-white hover:text-yellow-500" onclick="toggleMenu()" data-id="Keunggulan" data-en="Excellence">Keunggulan</a>
+            <a href="#nilai" class="text-white hover:text-yellow-500" onclick="toggleMenu()" data-id="Nilai" data-en="Values">Nilai</a>
+            <a href="#kontak" class="text-white hover:text-yellow-500" onclick="toggleMenu()" data-id="Kontak" data-en="Contact">Kontak</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="hero" class="relative" style="background: #0a0a0a;">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-content text-center px-6">
+        <div class="fade-in">
+            <img src="https://www.genspark.ai/api/files/s/OOmccRX6" alt="Merdeka Wangsa" class="mx-auto mb-8" style="width: 260px;">
+        </div>
+        <div class="fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 typing-text" id="typingText"></h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-6" data-id="Mendampingi Anda Menuju Keberhasilan dengan Integritas dan Keahlian" data-en="Guiding You Toward Success with Integrity and Expertise">Mendampingi Anda Menuju Keberhasilan dengan Integritas dan Keahlian</p>
+            <div class="inline-block px-6 py-2 border border-yellow-500 rounded-full text-yellow-500 mb-8">
+                Business · Legal · Political Consulting
+            </div>
+            <div class="mb-8">
+                <span class="text-yellow-500 text-sm tracking-widest" data-id="BERDIRI SEJAK 2025" data-en="ESTABLISHED 2025">BERDIRI SEJAK 2025</span>
+            </div>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#kontak" class="btn-gold px-8 py-3 rounded-full inline-block" data-id="Konsultasi Sekarang" data-en="Consult Now">Konsultasi Sekarang</a>
+                <a href="#tentang" class="btn-gold-outline px-8 py-3 rounded-full inline-block" data-id="Pelajari Lebih Lanjut" data-en="Learn More">Pelajari Lebih Lanjut</a>
+            </div>
+        </div>
+        <div class="scroll-indicator mt-16">
+            <i class="fas fa-chevron-down text-yellow-500 text-3xl"></i>
+        </div>
+    </div>
+</section>
+
+<!-- Tentang Kami -->
+<section id="tentang" class="py-24 px-6" style="background: #0a0f1e;">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex items-center mb-8 fade-in">
+            <div class="section-ornament mr-4"></div>
+            <h2 class="text-4xl md:text-5xl font-bold gold-text" data-id="Tentang Kami" data-en="About Us">Tentang Kami</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="fade-in">
+                <p class="text-lg text-gray-300 mb-6" style="line-height: 1.8;" data-id="Merdeka Wangsa adalah perusahaan konsultan independen yang bergerak di bidang Business, Legal, dan Political Consulting. Kami hadir untuk mendampingi klien dalam menghadapi tantangan hukum, bisnis, dan regulasi dengan pendekatan strategis, profesional, dan berorientasi pada solusi." data-en="Merdeka Wangsa is an independent consulting firm specializing in Business, Legal, and Political Consulting. We are here to assist clients in navigating legal, business, and regulatory challenges with a strategic, professional, and solution-oriented approach.">
+                    Merdeka Wangsa adalah perusahaan konsultan independen yang bergerak di bidang Business, Legal, dan Political Consulting. Kami hadir untuk mendampingi klien dalam menghadapi tantangan hukum, bisnis, dan regulasi dengan pendekatan strategis, profesional, dan berorientasi pada solusi.
+                </p>
+                <p class="text-lg text-gray-300" style="line-height: 1.8;" data-id="Dengan jaringan luas yang mencakup advokat, notaris, dan konsultan kebijakan publik, kami menggabungkan keahlian hukum dengan pemahaman mendalam terhadap dinamika bisnis dan regulasi di Indonesia." data-en="With an extensive network encompassing advocates, notaries, and public policy consultants, we combine legal expertise with deep understanding of business dynamics and regulations in Indonesia.">
+                    Dengan jaringan luas yang mencakup advokat, notaris, dan konsultan kebijakan publik, kami menggabungkan keahlian hukum dengan pemahaman mendalam terhadap dinamika bisnis dan regulasi di Indonesia.
+                </p>
+            </div>
+            <div class="grid gap-4 fade-in">
+                <div class="service-card p-6 rounded-lg">
+                    <div class="text-4xl mb-3">📅</div>
+                    <h3 class="text-xl font-bold gold-text mb-2" data-id="Tahun Berdiri" data-en="Year Founded">Tahun Berdiri</h3>
+                    <p class="text-gray-300">2025</p>
+                </div>
+                <div class="service-card p-6 rounded-lg">
+                    <div class="text-4xl mb-3">👤</div>
+                    <h3 class="text-xl font-bold gold-text mb-2" data-id="Pendiri" data-en="Founder">Pendiri</h3>
+                    <p class="text-gray-300">Ashwin Maarten Wilson</p>
+                </div>
+                <div class="service-card p-6 rounded-lg">
+                    <div class="text-4xl mb-3">🏛️</div>
+                    <h3 class="text-xl font-bold gold-text mb-2" data-id="Spesialisasi" data-en="Specialization">Spesialisasi</h3>
+                    <p class="text-gray-300">Business, Legal & Political</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Visi & Misi -->
+<section id="visi-misi" class="py-24 px-6" style="background: linear-gradient(180deg, #050a14 0%, #0a0f1e 100%);">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16">
+            <!-- Visi -->
+            <div class="fade-in">
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 rounded-full border-2 border-yellow-500 flex items-center justify-center mr-4">
+                        <span class="text-3xl">🔭</span>
+                    </div>
+                    <h2 class="text-4xl font-bold gold-text" data-id="VISI" data-en="VISION">VISI</h2>
+                </div>
+                <div class="gold-divider mb-6"></div>
+                <blockquote class="blockquote-gold text-lg" style="line-height: 1.8;" data-id="Menjadi firma konsultan independen terdepan dan paling terpercaya di Indonesia dalam bidang Business, Legal, dan Political Consulting — yang diakui atas integritas tak tergoyahkan, keahlian multidisiplin, serta kontribusi nyata bagi kemajuan bisnis, hukum, dan tata kelola bangsa." data-en="To become the foremost and most trusted independent consulting firm in Indonesia in the fields of Business, Legal, and Political Consulting — recognized for unwavering integrity, multidisciplinary expertise, and tangible contributions to the advancement of business, law, and national governance.">
+                    "Menjadi firma konsultan independen terdepan dan paling terpercaya di Indonesia dalam bidang Business, Legal, dan Political Consulting — yang diakui atas integritas tak tergoyahkan, keahlian multidisiplin, serta kontribusi nyata bagi kemajuan bisnis, hukum, dan tata kelola bangsa."
+                </blockquote>
+            </div>
+
+            <!-- Misi -->
+            <div class="fade-in">
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 rounded-full border-2 border-yellow-500 flex items-center justify-center mr-4">
+                        <span class="text-3xl">🎯</span>
+                    </div>
+                    <h2 class="text-4xl font-bold gold-text" data-id="MISI" data-en="MISSION">MISI</h2>
+                </div>
+                <div class="gold-divider mb-6"></div>
+                <div class="space-y-6">
+                    <div class="slide-up">
+                        <div class="flex items-start">
+                            <span class="text-3xl gold-text font-bold mr-4">01</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2" data-id="Memberikan Solusi Konsultasi Berkualitas Tinggi" data-en="Delivering High-Quality Consulting Solutions">Memberikan Solusi Konsultasi Berkualitas Tinggi</h3>
+                                <p class="text-gray-300" data-id="Menghadirkan layanan konsultasi hukum, bisnis, dan politik yang komprehensif dengan standar profesionalisme bertaraf internasional, berorientasi pada solusi nyata bagi setiap klien." data-en="Providing comprehensive legal, business, and political consulting services with international standards of professionalism, focused on delivering real solutions for every client.">Menghadirkan layanan konsultasi hukum, bisnis, dan politik yang komprehensif dengan standar profesionalisme bertaraf internasional, berorientasi pada solusi nyata bagi setiap klien.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-up">
+                        <div class="flex items-start">
+                            <span class="text-3xl gold-text font-bold mr-4">02</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2" data-id="Membangun Jaringan Strategis yang Kuat" data-en="Building a Strong Strategic Network">Membangun Jaringan Strategis yang Kuat</h3>
+                                <p class="text-gray-300" data-id="Menghubungkan klien dengan para ahli hukum, praktisi bisnis, dan konsultan kebijakan publik terpercaya di seluruh Indonesia untuk menghasilkan sinergi yang optimal." data-en="Connecting clients with trusted legal experts, business practitioners, and public policy consultants throughout Indonesia to generate optimal synergy.">Menghubungkan klien dengan para ahli hukum, praktisi bisnis, dan konsultan kebijakan publik terpercaya di seluruh Indonesia untuk menghasilkan sinergi yang optimal.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-up">
+                        <div class="flex items-start">
+                            <span class="text-3xl gold-text font-bold mr-4">03</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2" data-id="Mendampingi Klien Menavigasi Kompleksitas Regulasi" data-en="Guiding Clients Through Regulatory Complexity">Mendampingi Klien Menavigasi Kompleksitas Regulasi</h3>
+                                <p class="text-gray-300" data-id="Memastikan setiap klien memahami dan mampu menavigasi dinamika regulasi, hukum, dan perpolitikan Indonesia dengan pendekatan yang transparan, strategis, dan terukur." data-en="Ensuring every client understands and can navigate the dynamics of Indonesian regulations, law, and politics with a transparent, strategic, and measured approach.">Memastikan setiap klien memahami dan mampu menavigasi dinamika regulasi, hukum, dan perpolitikan Indonesia dengan pendekatan yang transparan, strategis, dan terukur.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-up">
+                        <div class="flex items-start">
+                            <span class="text-3xl gold-text font-bold mr-4">04</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2" data-id="Menjaga Kepercayaan sebagai Aset Utama" data-en="Upholding Trust as Our Primary Asset">Menjaga Kepercayaan sebagai Aset Utama</h3>
+                                <p class="text-gray-300" data-id="Menjunjung tinggi kerahasiaan dan kepercayaan klien sebagai fondasi utama dalam setiap hubungan kerja sama, karena kepercayaan adalah aset yang tidak ternilai." data-en="Maintaining the highest standards of client confidentiality and trust as the cornerstone of every working relationship, because trust is our most invaluable asset.">Menjunjung tinggi kerahasiaan dan kepercayaan klien sebagai fondasi utama dalam setiap hubungan kerja sama, karena kepercayaan adalah aset yang tidak ternilai.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-up">
+                        <div class="flex items-start">
+                            <span class="text-3xl gold-text font-bold mr-4">05</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2" data-id="Berkontribusi pada Ekosistem Bisnis Indonesia yang Sehat" data-en="Contributing to a Healthy Indonesian Business Ecosystem">Berkontribusi pada Ekosistem Bisnis Indonesia yang Sehat</h3>
+                                <p class="text-gray-300" data-id="Berperan aktif dalam mendorong terciptanya ekosistem bisnis Indonesia yang adil, patuh hukum, dan berdaya saing global melalui pendampingan yang bertanggung jawab." data-en="Actively promoting the creation of a fair, law-abiding, and globally competitive Indonesian business ecosystem through responsible guidance and support.">Berperan aktif dalam mendorong terciptanya ekosistem bisnis Indonesia yang adil, patuh hukum, dan berdaya saing global melalui pendampingan yang bertanggung jawab.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Message from the Founder -->
+<section id="pesan-pendiri" class="py-24 px-6 pattern-diagonal" style="background: #0d1117;">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12 fade-in">
+            <div class="text-yellow-500 text-sm tracking-widest mb-4" data-id="PESAN DARI PENDIRI" data-en="MESSAGE FROM THE FOUNDER">PESAN DARI PENDIRI</div>
+            <h2 class="text-4xl md:text-5xl font-bold" data-id="Pesan dari Pendiri" data-en="Message from the Founder">Pesan dari Pendiri</h2>
+            <div class="gold-divider"></div>
+        </div>
+
+        <div class="grid md:grid-cols-5 gap-12 items-start">
+            <!-- Founder Photo Column -->
+            <div class="md:col-span-2 fade-in">
+                <div class="founder-photo mb-6">
+                    <img src="https://www.genspark.ai/api/files/s/9icGnRC3" alt="Ashwin Maarten Wilson">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold gold-text mb-2" style="font-family: 'Playfair Display', serif;">Ashwin Maarten Wilson</h3>
+                    <p class="text-lg text-gray-300 mb-1" data-id="Pendiri & Presiden Direktur" data-en="Founder & President Director">Pendiri & Presiden Direktur</p>
+                    <p class="text-yellow-500">Merdeka Wangsa</p>
+                    <div class="gold-divider"></div>
+                </div>
+            </div>
+
+            <!-- Message Content Column -->
+            <div class="md:col-span-3 fade-in">
+                <blockquote class="text-2xl md:text-3xl italic gold-text mb-8 blockquote-gold" style="font-family: 'Playfair Display', serif; line-height: 1.6;" data-id="Perjalanan panjang selama lebih dari dua dekade telah mengajarkan saya satu hal yang paling fundamental: bahwa kepercayaan adalah segalanya." data-en="More than two decades of experience have taught me the most fundamental truth: that trust is everything.">
+                    "Perjalanan panjang selama lebih dari dua dekade telah mengajarkan saya satu hal yang paling fundamental: bahwa kepercayaan adalah segalanya."
+                </blockquote>
+
+                <div class="gold-divider mb-8"></div>
+
+                <div class="space-y-6 text-gray-300" style="font-size: 16px; line-height: 1.8;">
+                    <p data-id="Dunia bisnis, hukum, dan politik di Indonesia adalah ekosistem yang kompleks, dinamis, dan penuh dengan variabel yang tidak selalu dapat diprediksi. Saya memahami hal ini bukan hanya secara teoritis, tetapi melalui pengalaman langsung yang telah saya tempuh sejak tahun 2000." data-en="The world of business, law, and politics in Indonesia is a complex, dynamic ecosystem filled with variables that cannot always be predicted. I understand this not merely in theory, but through direct experience accumulated since the year 2000.">
+                        Dunia bisnis, hukum, dan politik di Indonesia adalah ekosistem yang kompleks, dinamis, dan penuh dengan variabel yang tidak selalu dapat diprediksi. Saya memahami hal ini bukan hanya secara teoritis, tetapi melalui pengalaman langsung yang telah saya tempuh sejak tahun 2000.
+                    </p>
+                    <p data-id="Karier saya dimulai dari dunia konstruksi infrastruktur negara — memimpin pembangunan proyek jaringan irigasi dan bendungan di berbagai wilayah Indonesia, dari Jambi, Semarang, Yogyakarta, Bali, hingga Maluku — proyek-proyek yang menyentuh kehidupan masyarakat secara langsung dan didanai oleh kepercayaan rakyat melalui APBN. Dari sana, saya belajar bahwa setiap keputusan yang kita ambil memiliki konsekuensi nyata bagi orang banyak." data-en="My career began in the world of national infrastructure construction — leading the development of irrigation networks and dam projects across Indonesia, from Jambi, Semarang, Yogyakarta, Bali, to Maluku — projects that directly touched people's lives, funded by the public's trust through the national budget (APBN). From that experience, I learned that every decision we make carries real consequences for many people.">
+                        Karier saya dimulai dari dunia konstruksi infrastruktur negara — memimpin pembangunan proyek jaringan irigasi dan bendungan di berbagai wilayah Indonesia, dari Jambi, Semarang, Yogyakarta, Bali, hingga Maluku — proyek-proyek yang menyentuh kehidupan masyarakat secara langsung dan didanai oleh kepercayaan rakyat melalui APBN. Dari sana, saya belajar bahwa setiap keputusan yang kita ambil memiliki konsekuensi nyata bagi orang banyak.
+                    </p>
+                    <p data-id="Perjalanan saya kemudian membawa saya ke arena politik. Selama hampir satu dekade, saya berkontribusi sebagai analis di Dewan Pimpinan Pusat Partai Demokrat, Institute Lembang 9, dan Perkumpulan Politik Founding Fathers House — organisasi-organisasi yang secara langsung membentuk wajah demokrasi Indonesia. Saya juga mendirikan dan memimpin Tabloid Politik Negarawan, sebuah publikasi nasional yang hadir untuk menghadirkan analisis ekonomi dan politik yang mendalam bagi publik Indonesia." data-en="My journey then led me into the political arena. For nearly a decade, I contributed as an analyst at the Central Executive Board of the Democratic Party, Institute Lembang 9, and the Founding Fathers House Political Association — organizations that directly shaped the face of Indonesian democracy. I also founded and led Tabloid Politik Negarawan, a national publication dedicated to providing in-depth analysis of economics and politics for the Indonesian public.">
+                        Perjalanan saya kemudian membawa saya ke arena politik. Selama hampir satu dekade, saya berkontribusi sebagai analis di Dewan Pimpinan Pusat Partai Demokrat, Institute Lembang 9, dan Perkumpulan Politik Founding Fathers House — organisasi-organisasi yang secara langsung membentuk wajah demokrasi Indonesia. Saya juga mendirikan dan memimpin Tabloid Politik Negarawan, sebuah publikasi nasional yang hadir untuk menghadirkan analisis ekonomi dan politik yang mendalam bagi publik Indonesia.
+                    </p>
+                    <p data-id="Pengalaman saya mencapai dimensi baru ketika saya dipercaya sebagai bagian dari Tim Pemenangan Presiden pada tahun 2019 dan 2024 — sebagai Campaign Analyst dan Public Speaker yang merancang strategi elektoral dan menyampaikan pesan kepada jutaan rakyat Indonesia. Dan pada tahun 2024, kepercayaan itu kembali hadir ketika saya bergabung dengan Badan Pemulihan Aset Kejaksaan Agung Republik Indonesia, bekerja dalam kolaborasi lintas lembaga demi tegaknya keadilan dan pemulihan aset negara." data-en="My experience reached a new dimension when I was trusted as part of the Presidential Campaign Team in 2019 and 2024 — as a Campaign Analyst and Public Speaker who crafted electoral strategies and delivered messages to millions of Indonesians. And in 2024, that trust continued when I joined the Asset Recovery Agency of the Attorney General's Office of the Republic of Indonesia, working in cross-institutional collaboration in the pursuit of justice and national asset recovery.">
+                        Pengalaman saya mencapai dimensi baru ketika saya dipercaya sebagai bagian dari Tim Pemenangan Presiden pada tahun 2019 dan 2024 — sebagai Campaign Analyst dan Public Speaker yang merancang strategi elektoral dan menyampaikan pesan kepada jutaan rakyat Indonesia. Dan pada tahun 2024, kepercayaan itu kembali hadir ketika saya bergabung dengan Badan Pemulihan Aset Kejaksaan Agung Republik Indonesia, bekerja dalam kolaborasi lintas lembaga demi tegaknya keadilan dan pemulihan aset negara.
+                    </p>
+                    <p data-id="Semua pengalaman ini — dari lapangan hingga ruang-ruang strategi politik nasional, dari halaman media hingga koridor lembaga penegak hukum negara — telah membentuk satu keyakinan yang kuat dalam diri saya: Indonesia membutuhkan konsultan yang tidak hanya cerdas secara hukum dan bisnis, tetapi juga memahami secara mendalam bagaimana roda kekuasaan dan regulasi berputar di negeri ini." data-en="All of these experiences — from the field to national political strategy rooms, from media pages to the corridors of state law enforcement institutions — have forged one strong conviction within me: Indonesia needs consultants who are not only legally and business-savvy, but who also deeply understand how the wheels of power and regulation turn in this nation.">
+                        Semua pengalaman ini — dari lapangan hingga ruang-ruang strategi politik nasional, dari halaman media hingga koridor lembaga penegak hukum negara — telah membentuk satu keyakinan yang kuat dalam diri saya: Indonesia membutuhkan konsultan yang tidak hanya cerdas secara hukum dan bisnis, tetapi juga memahami secara mendalam bagaimana roda kekuasaan dan regulasi berputar di negeri ini.
+                    </p>
+                    <p data-id="Merdeka Wangsa lahir dari keyakinan tersebut. Kami hadir bukan sekadar untuk memberikan nasihat hukum atau analisis bisnis — kami hadir untuk menjadi mitra strategis yang berdiri di sisi Anda, memahami tantangan Anda dari dalam, dan membantu Anda menemukan jalan terbaik ke depan." data-en="Merdeka Wangsa was born from that conviction. We are here not merely to offer legal advice or business analysis — we are here to be a strategic partner standing by your side, understanding your challenges from within, and helping you find the best path forward.">
+                        Merdeka Wangsa lahir dari keyakinan tersebut. Kami hadir bukan sekadar untuk memberikan nasihat hukum atau analisis bisnis — kami hadir untuk menjadi mitra strategis yang berdiri di sisi Anda, memahami tantangan Anda dari dalam, dan membantu Anda menemukan jalan terbaik ke depan.
+                    </p>
+                    <p data-id="Kepada setiap klien yang mempercayakan tantangan mereka kepada kami, saya berkomitmen secara pribadi bahwa Merdeka Wangsa akan selalu hadir dengan integritas penuh, keahlian yang teruji, dan dedikasi yang tidak pernah goyah." data-en="To every client who entrusts their challenges to us, I personally commit that Merdeka Wangsa will always be present with full integrity, proven expertise, and unwavering dedication.">
+                        Kepada setiap klien yang mempercayakan tantangan mereka kepada kami, saya berkomitmen secara pribadi bahwa Merdeka Wangsa akan selalu hadir dengan integritas penuh, keahlian yang teruji, dan dedikasi yang tidak pernah goyah.
+                    </p>
+                    <p class="font-semibold text-white" data-id="Indonesia yang maju dimulai dari bisnis yang sehat, hukum yang ditegakkan, dan kepemimpinan yang berintegritas. Mari bersama-sama kita wujudkan itu." data-en="A prosperous Indonesia begins with healthy businesses, upheld laws, and integrity in leadership. Together, let us make that a reality.">
+                        Indonesia yang maju dimulai dari bisnis yang sehat, hukum yang ditegakkan, dan kepemimpinan yang berintegritas. Mari bersama-sama kita wujudkan itu.
+                    </p>
+                </div>
+
+                <div class="mt-8 pt-8 border-t border-yellow-500">
+                    <p class="text-2xl font-bold gold-text" style="font-family: 'Playfair Display', serif;">Ashwin Maarten Wilson</p>
+                    <p class="text-gray-300" data-id="Pendiri & Presiden Direktur" data-en="Founder & President Director">Pendiri & Presiden Direktur</p>
+                    <p class="text-yellow-500 font-semibold">MERDEKA WANGSA</p>
+                    <p class="text-sm text-gray-400">Business · Legal · Political Consulting</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Layanan Utama -->
+<section id="layanan" class="py-24 px-6" style="background: #111827;">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-in">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" data-id="Layanan Utama" data-en="Our Services">Layanan Utama</h2>
+            <div class="gold-divider"></div>
+            <p class="text-xl text-gray-300 mt-4" data-id="Solusi komprehensif untuk setiap kebutuhan hukum, bisnis, dan politik Anda" data-en="Comprehensive consulting solutions for your legal, business, and political needs">Solusi komprehensif untuk setiap kebutuhan hukum, bisnis, dan politik Anda</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="service-card p-8 rounded-lg slide-up gold-glow-hover">
+                <div class="text-5xl mb-4">⚖️</div>
+                <h3 class="text-2xl font-bold gold-text mb-3" data-id="Konsultasi Hukum Korporasi & Bisnis" data-en="Corporate & Business Legal Consulting">Konsultasi Hukum Korporasi & Bisnis</h3>
+                <p class="text-gray-300" data-id="Pendampingan hukum komprehensif untuk kebutuhan korporasi dan bisnis Anda" data-en="Comprehensive legal assistance for your corporate and business needs">Pendampingan hukum komprehensif untuk kebutuhan korporasi dan bisnis Anda</p>
+            </div>
+
+            <div class="service-card p-8 rounded-lg slide-up gold-glow-hover">
+                <div class="text-5xl mb-4">📋</div>
+                <h3 class="text-2xl font-bold gold-text mb-3" data-id="Analisa & Penyusunan Kontrak" data-en="Contract Analysis & Drafting">Analisa & Penyusunan Kontrak</h3>
+                <p class="text-gray-300" data-id="Penyusunan dan review kontrak yang akurat dan terlindungi secara hukum" data-en="Accurate and legally protected contract preparation and review">Penyusunan dan review kontrak yang akurat dan terlindungi secara hukum</p>
+            </div>
+
+            <div class="service-card p-8 rounded-lg slide-up gold-glow-hover">
+                <div class="text-5xl mb-4">🏛️</div>
+                <h3 class="text-2xl font-bold gold-text mb-3" data-id="Penanganan Sengketa & Litigasi" data-en="Dispute Handling & Litigation">Penanganan Sengketa & Litigasi</h3>
+                <p class="text-gray-300" data-id="Strategi penanganan sengketa dan persiapan litigasi yang terencana" data-en="Strategic dispute resolution and planned litigation preparation">Strategi penanganan sengketa dan persiapan litigasi yang terencana</p>
+            </div>
+
+            <div class="service-card p-8 rounded-lg slide-up gold-glow-hover">
+                <div class="text-5xl mb-4">📜</div>
+                <h3 class="text-2xl font-bold gold-text mb-3" data-id="Konsultasi Regulasi & Kepatuhan" data-en="Regulatory & Compliance Consulting">Konsultasi Regulasi & Kepatuhan</h3>
+                <p class="text-gray-300" data-id="Memastikan operasional bisnis Anda sesuai regulasi yang berlaku" data-en="Ensuring your business operations comply with applicable regulations">Memastikan operasional bisnis Anda sesuai regulasi yang berlaku</p>
+            </div>
+
+            <div class="service-card p-8 rounded-lg slide-up gold-glow-hover">
+                <div class="text-5xl mb-4">🤝</div>
+                <h3 class="text-2xl font-bold gold-text mb-3" data-id="Pendampingan Negosiasi & Mediasi" data-en="Negotiation & Mediation Assistance">Pendampingan Negosiasi & Mediasi</h3>
+                <p class="text-gray-300" data-id="Fasilitasi negosiasi dan mediasi untuk mencapai kesepakatan terbaik" data-en="Facilitating negotiations and mediation to achieve the best agreements">Fasilitasi negosiasi dan mediasi untuk mencapai kesepakatan terbaik</p>
+            </div>
+
+            <div class="service-card p-8 rounded-lg slide-up gold-glow-hover">
+                <div class="text-5xl mb-4">👨‍⚖️</div>
+                <h3 class="text-2xl font-bold gold-text mb-3" data-id="Rekomendasi Pengacara & Notaris" data-en="Lawyer & Notary Recommendation">Rekomendasi Pengacara & Notaris</h3>
+                <p class="text-gray-300" data-id="Jaringan advokat dan notaris terpercaya siap mendampingi Anda" data-en="A trusted network of advocates and notaries ready to assist you">Jaringan advokat dan notaris terpercaya siap mendampingi Anda</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Keunggulan Kami -->
+<section id="keunggulan" class="py-24 px-6" style="background: linear-gradient(180deg, #0a0a0a 0%, #0a0f1e 100%);">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-in">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" data-id="Keunggulan Kami" data-en="Our Excellence">Keunggulan Kami</h2>
+            <div class="gold-divider"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="text-center fade-in relative">
+                <div class="text-9xl font-bold text-gray-800 absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8" style="font-family: 'Playfair Display', serif; opacity: 0.1;">I</div>
+                <div class="relative z-10 pt-12">
+                    <div class="text-5xl mb-4">🏛️</div>
+                    <h3 class="text-2xl font-bold gold-text mb-4" data-id="Penanganan Perkara Kompleks" data-en="Handling Complex Cases">Penanganan Perkara Kompleks</h3>
+                    <p class="text-gray-300" data-id="Berpengalaman dalam perkara hukum bernilai besar dan tingkat kesulitan tinggi, dengan rekam jejak yang solid dalam memberikan solusi strategis." data-en="Experienced in high-value and high-complexity legal matters, with a solid track record in delivering strategic solutions.">Berpengalaman dalam perkara hukum bernilai besar dan tingkat kesulitan tinggi, dengan rekam jejak yang solid dalam memberikan solusi strategis.</p>
+                </div>
+            </div>
+
+            <div class="text-center fade-in relative border-l border-r border-yellow-500 border-opacity-30">
+                <div class="text-9xl font-bold text-gray-800 absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8" style="font-family: 'Playfair Display', serif; opacity: 0.1;">II</div>
+                <div class="relative z-10 pt-12">
+                    <div class="text-5xl mb-4">🤝</div>
+                    <h3 class="text-2xl font-bold gold-text mb-4" data-id="Jaringan Profesional Luas" data-en="Extensive Professional Network">Jaringan Profesional Luas</h3>
+                    <p class="text-gray-300" data-id="Jaringan mencakup advokat, notaris, dan konsultan kebijakan publik terpercaya di seluruh Indonesia." data-en="A network encompassing trusted advocates, notaries, and public policy consultants throughout Indonesia.">Jaringan mencakup advokat, notaris, dan konsultan kebijakan publik terpercaya di seluruh Indonesia.</p>
+                </div>
+            </div>
+
+            <div class="text-center fade-in relative">
+                <div class="text-9xl font-bold text-gray-800 absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8" style="font-family: 'Playfair Display', serif; opacity: 0.1;">III</div>
+                <div class="relative z-10 pt-12">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold gold-text mb-4" data-id="Pendekatan Multidisiplin" data-en="Multidisciplinary Approach">Pendekatan Multidisiplin</h3>
+                    <p class="text-gray-300" data-id="Menggabungkan keahlian hukum dengan pemahaman mendalam terhadap dinamika bisnis dan regulasi di Indonesia." data-en="Combining legal expertise with deep understanding of business dynamics and regulations in Indonesia.">Menggabungkan keahlian hukum dengan pemahaman mendalam terhadap dinamika bisnis dan regulasi di Indonesia.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nilai Perusahaan -->
+<section id="nilai" class="py-24 px-6" style="background: #050505;">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-in">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" data-id="Nilai Perusahaan" data-en="Company Values">Nilai Perusahaan</h2>
+            <div class="gold-divider"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
+            <div class="value-card p-8 rounded-lg text-center slide-up">
+                <div class="text-5xl mb-4">🔷</div>
+                <h3 class="text-xl font-bold gold-text mb-3" data-id="INTEGRITAS" data-en="INTEGRITY">INTEGRITAS</h3>
+                <p class="text-gray-300 text-sm" data-id="Kami menjunjung tinggi kejujuran dan etika dalam setiap aspek pekerjaan kami" data-en="We uphold honesty and ethics in every aspect of our work">Kami menjunjung tinggi kejujuran dan etika dalam setiap aspek pekerjaan kami</p>
+            </div>
+
+            <div class="value-card p-8 rounded-lg text-center slide-up">
+                <div class="text-5xl mb-4">🔐</div>
+                <h3 class="text-xl font-bold gold-text mb-3" data-id="KERAHASIAAN" data-en="CONFIDENTIALITY">KERAHASIAAN</h3>
+                <p class="text-gray-300 text-sm" data-id="Setiap informasi klien dijaga dengan ketat dan penuh tanggung jawab" data-en="Every piece of client information is strictly and responsibly protected">Setiap informasi klien dijaga dengan ketat dan penuh tanggung jawab</p>
+            </div>
+
+            <div class="value-card p-8 rounded-lg text-center slide-up">
+                <div class="text-5xl mb-4">💼</div>
+                <h3 class="text-xl font-bold gold-text mb-3" data-id="KOMITMEN" data-en="COMMITMENT">KOMITMEN</h3>
+                <p class="text-gray-300 text-sm" data-id="Kami berkomitmen penuh dalam setiap penugasan hingga tercapai hasil terbaik" data-en="We are fully committed to every assignment until the best results are achieved">Kami berkomitmen penuh dalam setiap penugasan hingga tercapai hasil terbaik</p>
+            </div>
+
+            <div class="value-card p-8 rounded-lg text-center slide-up">
+                <div class="text-5xl mb-4">🔍</div>
+                <h3 class="text-xl font-bold gold-text mb-3" data-id="TRANSPARANSI" data-en="TRANSPARENCY">TRANSPARANSI</h3>
+                <p class="text-gray-300 text-sm" data-id="Komunikasi terbuka dan jelas menjadi fondasi hubungan kami dengan klien" data-en="Open and clear communication forms the foundation of our relationship with clients">Komunikasi terbuka dan jelas menjadi fondasi hubungan kami dengan klien</p>
+            </div>
+
+            <div class="value-card p-8 rounded-lg text-center slide-up">
+                <div class="text-5xl mb-4">⭐</div>
+                <h3 class="text-xl font-bold gold-text mb-3" data-id="PROFESIONALISME" data-en="PROFESSIONALISM">PROFESIONALISME</h3>
+                <p class="text-gray-300 text-sm" data-id="Standar kerja tertinggi dalam setiap layanan yang kami berikan" data-en="The highest work standards in every service we provide">Standar kerja tertinggi dalam setiap layanan yang kami berikan</p>
+            </div>
+        </div>
+
+        <div class="text-center fade-in">
+            <p class="text-lg text-gray-300 italic max-w-4xl mx-auto" data-id="Lima nilai ini bukan sekadar kata-kata — melainkan komitmen kami kepada setiap klien yang mempercayakan kebutuhan hukum dan bisnisnya kepada Merdeka Wangsa." data-en="These five values are not merely words — they are our commitment to every client who entrusts their legal and business needs to Merdeka Wangsa.">
+                "Lima nilai ini bukan sekadar kata-kata — melainkan komitmen kami kepada setiap klien yang mempercayakan kebutuhan hukum dan bisnisnya kepada Merdeka Wangsa."
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Mengapa Pilih Kami -->
+<section class="py-24 px-6 pattern-dots" style="background: #0a0f1e;">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-in">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" data-id="Mengapa Memilih Kami" data-en="Why Choose Us">Mengapa Memilih Kami</h2>
+            <div class="gold-divider"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="fade-in">
+                <p class="text-lg text-gray-300 mb-6" style="line-height: 1.8;" data-id="Merdeka Wangsa hadir sebagai mitra terpercaya Anda dalam menavigasi kompleksitas hukum, bisnis, dan politik di Indonesia. Kami percaya bahwa setiap klien berhak mendapatkan pendampingan terbaik dengan standar internasional." data-en="Merdeka Wangsa is your trusted partner in navigating the complexities of law, business, and politics in Indonesia. We believe every client deserves the best assistance with international standards.">
+                    Merdeka Wangsa hadir sebagai mitra terpercaya Anda dalam menavigasi kompleksitas hukum, bisnis, dan politik di Indonesia. Kami percaya bahwa setiap klien berhak mendapatkan pendampingan terbaik dengan standar internasional.
+                </p>
+                <p class="text-lg text-gray-300" style="line-height: 1.8;" data-id="Dengan pengalaman yang teruji dan jaringan yang luas, kami siap memberikan solusi yang tidak hanya memenuhi ekspektasi, tetapi melampaui harapan Anda." data-en="With proven experience and an extensive network, we are ready to provide solutions that not only meet expectations but exceed your hopes.">
+                    Dengan pengalaman yang teruji dan jaringan yang luas, kami siap memberikan solusi yang tidak hanya memenuhi ekspektasi, tetapi melampaui harapan Anda.
+                </p>
+            </div>
+
+            <div class="fade-in">
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="text-3xl gold-text mr-4">✓</div>
+                        <p class="text-gray-300 text-lg" data-id="Konsultan independen dengan pendekatan tidak berpihak" data-en="Independent consultant with an unbiased approach">Konsultan independen dengan pendekatan tidak berpihak</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-3xl gold-text mr-4">✓</div>
+                        <p class="text-gray-300 text-lg" data-id="Solusi strategis dan berorientasi hasil" data-en="Strategic and result-oriented solutions">Solusi strategis dan berorientasi hasil</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-3xl gold-text mr-4">✓</div>
+                        <p class="text-gray-300 text-lg" data-id="Jaringan advokat dan notaris terpercaya" data-en="Trusted network of advocates and notaries">Jaringan advokat dan notaris terpercaya</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-3xl gold-text mr-4">✓</div>
+                        <p class="text-gray-300 text-lg" data-id="Pemahaman mendalam regulasi bisnis Indonesia" data-en="In-depth understanding of Indonesian business regulations">Pemahaman mendalam regulasi bisnis Indonesia</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-3xl gold-text mr-4">✓</div>
+                        <p class="text-gray-300 text-lg" data-id="Kerahasiaan dan profesionalisme terjamin" data-en="Guaranteed confidentiality and professionalism">Kerahasiaan dan profesionalisme terjamin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Kontak -->
+<section id="kontak" class="py-24 px-6" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1510 50%, #0a0a0a 100%);">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-in">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" data-id="Konsultasikan Kebutuhan Anda" data-en="Consult Your Needs With Us">Konsultasikan Kebutuhan Anda</h2>
+            <div class="gold-divider"></div>
+            <p class="text-xl text-gray-300 mt-4" data-id="Tim ahli Merdeka Wangsa siap memberikan solusi terbaik untuk tantangan hukum, bisnis, dan regulasi Anda. Jadwalkan konsultasi pertama Anda hari ini." data-en="Merdeka Wangsa's team of experts is ready to provide the best solutions for your legal, business, and regulatory challenges. Schedule your first consultation today.">Tim ahli Merdeka Wangsa siap memberikan solusi terbaik untuk tantangan hukum, bisnis, dan regulasi Anda. Jadwalkan konsultasi pertama Anda hari ini.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="fade-in">
+                <div class="service-card p-8 rounded-lg">
+                    <h3 class="text-2xl font-bold gold-text mb-6" data-id="Informasi Kontak" data-en="Contact Information">Informasi Kontak</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-yellow-500 text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white mb-2" data-id="Alamat" data-en="Address">Alamat</h4>
+                                <p class="text-gray-300">Apartemen Taman Sari Bintaro Mansion<br>Jalan Jombang Raya No.88 Lt. 2 Unit 15-16<br>Tangerang Selatan, Banten<br>Indonesia 15227</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-yellow-500 text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Email</h4>
+                                <a href="/cdn-cgi/l/email-protection#d4b9b1a6b0b1bfb5a3b5bab3a7b594b3b9b5bdb8fab7bbb9" class="text-yellow-500 hover:underline"><span class="__cf_email__" data-cfemail="513c342335343a3026303f36223011363c30383d7f323e3c">[email&#160;protected]</span></a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-building text-yellow-500 text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white mb-2" data-id="Tahun Berdiri" data-en="Year Founded">Tahun Berdiri</h4>
+                                <p class="text-gray-300">Est. 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-in flex flex-col justify-center">
+                <div class="text-center md:text-left">
+                    <h3 class="text-3xl font-bold mb-6" data-id="Siap Membantu Anda" data-en="Ready to Assist You">Siap Membantu Anda</h3>
+                    <p class="text-gray-300 text-lg mb-8" data-id="Jangan ragu untuk menghubungi kami. Setiap pertanyaan dan kebutuhan Anda adalah prioritas kami." data-en="Don't hesitate to contact us. Every question and need you have is our priority.">Jangan ragu untuk menghubungi kami. Setiap pertanyaan dan kebutuhan Anda adalah prioritas kami.</p>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <a href="/cdn-cgi/l/email-protection#acc1c9dec8c9c7cddbcdc2cbdfcdeccbc1cdc5c082cfc3c1" class="btn-gold px-8 py-4 rounded-full text-center">
+                            <i class="fas fa-envelope mr-2"></i> <span data-id="Kirim Email Sekarang" data-en="Send Email Now">Kirim Email Sekarang</span>
+                        </a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Apartemen+Taman+Sari+Bintaro+Mansion+Jalan+Jombang+Raya+88+Tangerang+Selatan" target="_blank" class="btn-gold-outline px-8 py-4 rounded-full text-center">
+                            <i class="fas fa-map-marked-alt mr-2"></i> <span data-id="Lihat Lokasi" data-en="View Location">Lihat Lokasi</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 px-6" style="background: #000000;">
+    <div class="max-w-7xl mx-auto text-center">
+        <img src="https://www.genspark.ai/api/files/s/OOmccRX6" alt="Merdeka Wangsa" class="mx-auto mb-6" style="height: 60px;">
+        <p class="text-yellow-500 mb-2">Business · Legal · Political Consulting</p>
+        <p class="text-gray-400 mb-4" data-id="Didirikan oleh Ashwin Maarten Wilson · Berdiri 2025" data-en="Founded by Ashwin Maarten Wilson · Est. 2025">Didirikan oleh Ashwin Maarten Wilson · Berdiri 2025</p>
+        <div class="gold-divider"></div>
+        <p class="text-gray-500 mt-4" data-id="© 2025 Merdeka Wangsa. Hak Cipta Dilindungi." data-en="© 2025 Merdeka Wangsa. All Rights Reserved.">© 2025 Merdeka Wangsa. Hak Cipta Dilindungi.</p>
+        <p class="text-gray-600 text-sm mt-2">Tangerang Selatan, Banten - Indonesia</p>
+    </div>
+</footer>
+
+<!-- Scroll to Top Button -->
+<div id="scrollTop">
+    <i class="fas fa-chevron-up text-xl"></i>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Language Switch Function
+    let currentLang = localStorage.getItem('mw-lang') || 'id';
+    
+    function switchLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('mw-lang', lang);
+        
+        // Update button states
+        document.getElementById('btn-id').classList.toggle('active', lang === 'id');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        
+        // Update all elements with language attributes
+        document.querySelectorAll('[data-id][data-en]').forEach(element => {
+            const text = lang === 'id' ? element.getAttribute('data-id') : element.getAttribute('data-en');
+            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                element.placeholder = text;
+            } else {
+                element.textContent = text;
+            }
+        });
+        
+        // Update typing text
+        updateTypingText(lang);
+    }
+    
+    // Initialize language on load
+    document.addEventListener('DOMContentLoaded', () => {
+        switchLanguage(currentLang);
+    });
+
+    // Typing Text Animation
+    const typingTextElement = document.getElementById('typingText');
+    const textID = 'Solusi Hukum, Bisnis & Politik yang Strategis';
+    const textEN = 'Strategic Solutions in Law, Business & Politics';
+    let typingIndex = 0;
+    let typingTimeout;
+
+    function updateTypingText(lang) {
+        typingIndex = 0;
+        typingTextElement.textContent = '';
+        clearTimeout(typingTimeout);
+        typeText(lang);
+    }
+
+    function typeText(lang) {
+        const text = lang === 'id' ? textID : textEN;
+        if (typingIndex < text.length) {
+            typingTextElement.textContent = text.substring(0, typingIndex + 1);
+            typingIndex++;
+            typingTimeout = setTimeout(() => typeText(lang), 100);
+        } else {
+            typingTextElement.classList.remove('typing-text');
+        }
+    }
+
+    setTimeout(() => typeText(currentLang), 500);
+
+    // Canvas Particle Animation
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const particleCount = 100;
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 3 + 1;
+            this.speedX = Math.random() * 0.5 - 0.25;
+            this.speedY = Math.random() * 0.5 - 0.25;
+            this.opacity = Math.random() * 0.5 + 0.2;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            if (this.y < 0) this.y = canvas.height;
+        }
+
+        draw() {
+            ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+
+    // Sticky Navbar
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Scroll Animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in, .slide-up').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Scroll to Top Button
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('show');
+        } else {
+            scrollTopBtn.classList.remove('show');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Mobile Menu Toggle
+    function toggleMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('active');
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Staggered animation for mission items
+    const missionItems = document.querySelectorAll('#visi-misi .slide-up');
+    missionItems.forEach((item, index) => {
+        item.style.transitionDelay = `${index * 0.1}s`;
+    });
+
+    // Initial fade-in for hero content
+    window.addEventListener('load', () => {
+        document.querySelectorAll('#hero .fade-in').forEach((el, index) => {
+            setTimeout(() => {
+                el.classList.add('visible');
+            }, index * 200);
+        });
+    });
+</script>
+
+</body>
+</html>
+    
+    
+    
+    
